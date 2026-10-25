@@ -9,7 +9,7 @@ const formatNumber = (num: number) => num.toFixed(2);
 // Real speed-test endpoints (CORS-friendly, widely available)
 const ENDPOINTS = [
   { name: "Tele2", ping: "https://speedtest.tele2.net/", dl: "https://speedtest.tele2.net/10MB.zip", ul: "https://speedtest.tele2.net/upload.php", region: "EU", ip: "speedtest.tele2.net" },
-  { name: "Cloudflare", ping: "https://speed.cloudflare.com/", dl: "https://speed.cloudflare.com/__down?bytes=25000000", ul: "https://speed.cloudflare.com/__up", region: "Global", ip: "speed.cloudflare.com" },
+  { name: "Cloudflare", ping: "https://speed.cloudflare.com/", dl: "https://speed.cloudflare.com/__down?bytes=50000000", ul: "https://speed.cloudflare.com/__up", region: "Global", ip: "speed.cloudflare.com" },
 ];
 
 export default function SpeedtestPage() {

@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 0xm4ngli Speedtest
 
-## Getting Started
+Real-time browser speedtest measuring ping, download, and upload against live endpoints (Tele2 EU, Cloudflare Global). Auto-detects visitor info via `ipapi.co`.
 
-First, run the development server:
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build / Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+bun run build
+```
 
-## Learn More
+Deploy via Vercel: [vercel.com/new](https://vercel.com/new)
 
-To learn more about Next.js, take a look at the following resources:
+## Used Technologies & Licenses
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Technology | License | Source / Link |
+|---|---|---|
+| Next.js | MIT | [github.com/vercel/next.js](https://github.com/vercel/next.js) |
+| React | MIT | [github.com/facebook/react](https://github.com/facebook/react) |
+| React DOM | MIT | [github.com/facebook/react](https://github.com/facebook/react) |
+| Tailwind CSS | MIT | [github.com/tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss) |
+| TypeScript | Apache-2.0 | [github.com/microsoft/TypeScript](https://github.com/microsoft/TypeScript) |
+| ESLint | MIT | [github.com/eslint/eslint](https://github.com/eslint/eslint) |
+| Geist Font | SIL OFL / Apache-2.0 (via Vercel) | [vercel.com/font](https://vercel.com/font) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Full license texts:**
+- MIT: [opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+- Apache-2.0: [apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Deploy on Vercel
+No proprietary or proprietary-locked dependencies are required for runtime.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Privacy Note
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This site does **not** store visitor IPs, locations, or network data. All visitor info (`ipapi.co`) is fetched client-side at page load and is never saved to GitHub, Vercel build logs, or the source repo.
