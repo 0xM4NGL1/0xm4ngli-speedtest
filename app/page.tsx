@@ -194,9 +194,9 @@ export default function SpeedtestPage() {
         updateGauge(Math.min(100, (currentDl / 1000) * 100));
         await sleep(50);
       }
-      currentDl = formatNumber(620 + Math.random() * 10 - 5);
-      setDlVal(currentDl);
-      setActiveSpeed(currentDl);
+      currentDl = Math.round(620 + Math.random() * 10 - 5);
+      setDlVal(formatNumber(currentDl));
+      setActiveSpeed(formatNumber(currentDl));
     }
     setDlClass("text-4xl font-tech font-bold neon-text-cyan");
     setDlActive(false);
@@ -255,9 +255,9 @@ export default function SpeedtestPage() {
         updateGauge(Math.min(100, (currentUl / 500) * 100));
         await sleep(50);
       }
-      currentUl = formatNumber(310 + Math.random() * 10 - 5);
-      setUlVal(currentUl);
-      setActiveSpeed(currentUl);
+      currentUl = Math.round(310 + Math.random() * 10 - 5);
+      setUlVal(formatNumber(currentUl));
+      setActiveSpeed(formatNumber(currentUl));
     }
     setUlClass("text-4xl font-tech font-bold neon-text-purple");
     setUlActive(false);
@@ -286,7 +286,7 @@ export default function SpeedtestPage() {
           <svg className="w-8 h-8 neon-text-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
-          <h1 className="text-2xl font-tech font-bold tracking-widest text-white">SPEED<span className="neon-text-cyan">TEST</span></h1>
+          <h1 className="text-2xl font-tech font-bold tracking-widest text-white">0XM4NGLI <span className="neon-text-cyan">SPEEDTEST</span></h1>
         </div>
 
       </header>

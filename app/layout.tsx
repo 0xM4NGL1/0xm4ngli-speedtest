@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neon Speedtest UI",
+  title: "0xm4ngli speedtest",
   description: "Speedtest with neon glow effects",
 };
 
