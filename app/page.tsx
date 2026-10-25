@@ -40,6 +40,35 @@ export default function SpeedtestPage() {
 
   const [nearestServer, setNearestServer] = useState(ENDPOINTS[0].name);
 
+  interface VisitorInfo {
+    ip?: string;
+    version?: string;
+    city?: string;
+    region?: string;
+    country?: string;
+    org?: string;
+  }
+  const [visInfo, setVisInfo] = useState<VisitorInfo>({});
+
+  useEffect(() => {
+    fetch("https://ipapi.co/json/", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => {
+        const info: VisitorInfo = {
+          ip: data.ip,
+          version: data.version ? (String(data.version).includes(":") ? "IPv6" : "IPv4") : (String(data.ip).includes(":") ? "IPv6" : "IPv4"),
+          city: data.city,
+          region: data.region,
+          country: data.country_name,
+          org: data.org,
+        };
+        setVisInfo(info);
+      })
+      .catch(() => {
+        setVisInfo({ version: "Unknown", city: "Unknown", region: "", country: "", org: "Unknown" });
+      });
+  }, []);
+
   const updateGauge = useCallback((percentage: number) => {
     const offset = MAX_DASH_OFFSET - (percentage / 100) * MAX_DASH_OFFSET;
     setGaugeOffset(offset);
@@ -264,6 +293,14 @@ export default function SpeedtestPage() {
 
       <main className="flex-1 w-full max-w-4xl mx-auto flex flex-col items-center justify-center p-4 z-10">
         <div className="w-full text-center mb-2 text-xs text-cyan-400 font-medium tracking-widest animate-fade-in">SERVER: {nearestServer}</div>
+
+        <div className="w-full max-w-4xl mx-auto px-4 mb-6 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-gray-300">
+          <div className="glass-panel rounded-lg p-2 text-center"><div className="text-gray-500 uppercase tracking-wide">Connected via</div><div className="font-semibold text-cyan-300">{visInfo.version || "—"}</div></div>
+          <div className="glass-panel rounded-lg p-2 text-center"><div className="text-gray-500 uppercase tracking-wide">Server location</div><div className="font-semibold text-white">{visInfo.city ? (visInfo.city + (visInfo.region ? ", " + visInfo.region : "")) : "—"}</div></div>
+          <div className="glass-panel rounded-lg p-2 text-center"><div className="text-gray-500 uppercase tracking-wide">Your network</div><div className="font-semibold text-white truncate">{visInfo.org || "—"}</div></div>
+          <div className="glass-panel rounded-lg p-2 text-center"><div className="text-gray-500 uppercase tracking-wide">Your IP address</div><div className="font-mono text-xs text-cyan-300 truncate">{visInfo.ip || "—"}</div></div>
+        </div>
+
         <div className="w-full grid grid-cols-3 gap-4 mb-12">
           <div id="pingBox" className={`glass-panel metric-box rounded-xl p-4 flex flex-col items-center justify-center ${pingActive ? "metric-active-cyan" : ""}`}>
             <div className="flex items-center gap-2 text-gray-400 mb-1">
@@ -343,8 +380,8 @@ export default function SpeedtestPage() {
             <svg className="w-5 h-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
           </div>
           <div className="text-left">
-            <div className="text-sm font-semibold text-white">{ENDPOINTS.find(e => e.name === nearestServer)?.region || "Real"}</div>
-            <div className="text-xs text-gray-500">Real Endpoint</div>
+            <div className="text-sm font-semibold text-purple-400">{ENDPOINTS.find(e => e.name === nearestServer)?.region || "—"}</div>
+            <div className="text-xs text-gray-500">{ENDPOINTS.find(e => e.name === nearestServer)?.name || "—"} Endpoint</div>
           </div>
         </div>
       </footer>
